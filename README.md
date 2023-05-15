@@ -122,7 +122,7 @@ or individual launch `mvn -DjmeterReportFile=synthesis.csv -DkpiFile=kpi.csv -Dj
     <dependency>
       <groupId>io.github.vdaburon</groupId>
       <artifactId>junit-reporter-kpi-from-jmeter-report-csv</artifactId>
-      <version>1.1</version>
+      <version>1.2</version>
     </dependency>
   </dependencies>
 
