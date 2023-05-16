@@ -134,7 +134,11 @@ public class JUnitReportFromJMReportCsv {
 
         Document document = UtilsJUnitXml.createJUnitRootDocument();
         for (int i = 0; i < csvKpiLines.size(); i++) {
-            CheckKpiResult checkKpiResult = verifyKpi(csvKpiLines.get(i), csvJMReportLines, csvLabelColumnName);
+            CSVRecord recordKpiLine = csvKpiLines.get(i);
+            if (recordKpiLine.size() < 3) {
+                continue;
+            }
+            CheckKpiResult checkKpiResult = verifyKpi(recordKpiLine, csvJMReportLines, csvLabelColumnName);
             if (checkKpiResult.isKpiFail()) {
                 isFail = true;
                 String className = checkKpiResult.getMetricCsvColumnName() + " (" + checkKpiResult.getLabelRegex() + ") " + checkKpiResult.getComparator() + " "  + checkKpiResult.getThreshold();
@@ -210,7 +214,7 @@ public class JUnitReportFromJMReportCsv {
                             isFailKpi = true;
                             if (isFirstFail) {
                                 isFirstFail = false;
-                                String failMessage = "Actual value " +  dMetric + " exceeds threshold " + dThreshold + " for samples matching \"" + labelRegex + "\"; fail label(s) \"" + label + "\""; // Actual value 2908,480000 exceeds threshold 2500,000000 for samples matching "@SC01_P03_DUMMY"
+                                String failMessage = "Actual value " +  dMetric + " exceeds or equals threshold " + dThreshold + " for samples matching \"" + labelRegex + "\"; fail label(s) \"" + label + "\""; // Actual value 2908,480000 exceeds threshold 2500,000000 for samples matching "@SC01_P03_DUMMY"
                                 checkKpiResult.setKpiFail(true);
                                 checkKpiResult.setFailMessage(failMessage);
                             } else {
@@ -233,7 +237,7 @@ public class JUnitReportFromJMReportCsv {
                             isFailKpi = true;
                             if (isFirstFail) {
                                 isFirstFail = false;
-                                String failMessage = "Actual value " + dMetric + " exceeds or equals threshold " + dThreshold + " for samples matching \"" + labelRegex + "\"; fail label(s) \"" + label + "\"";
+                                String failMessage = "Actual value " + dMetric + " exceeds threshold " + dThreshold + " for samples matching \"" + labelRegex + "\"; fail label(s) \"" + label + "\"";
                                 checkKpiResult.setKpiFail(true);
                                 checkKpiResult.setFailMessage(failMessage);
                             } else {
@@ -256,7 +260,7 @@ public class JUnitReportFromJMReportCsv {
                             isFailKpi = true;
                             if (isFirstFail) {
                                 isFirstFail = false;
-                                String failMessage = "Actual value " + dMetric + " is less then threshold " + dThreshold + " for samples matching \"" + labelRegex + "\"; fail label(s) \"" + label + "\"";
+                                String failMessage = "Actual value " + dMetric + " is less or equals then threshold " + dThreshold + " for samples matching \"" + labelRegex + "\"; fail label(s) \"" + label + "\"";
                                 checkKpiResult.setKpiFail(true);
                                 checkKpiResult.setFailMessage(failMessage);
                             } else {
@@ -279,7 +283,7 @@ public class JUnitReportFromJMReportCsv {
                             isFailKpi = true;
                             if (isFirstFail) {
                                 isFirstFail = false;
-                                String failMessage = "Actual value " + dMetric + "is less or equals threshold " + dThreshold + " for samples matching \"" + labelRegex + "\"; fail label(s) \"" + label + "\"";
+                                String failMessage = "Actual value " + dMetric + "is less then threshold " + dThreshold + " for samples matching \"" + labelRegex + "\"; fail label(s) \"" + label + "\"";
                                 checkKpiResult.setKpiFail(true);
                                 checkKpiResult.setFailMessage(failMessage);
                             } else {
@@ -376,7 +380,7 @@ public class JUnitReportFromJMReportCsv {
         Option csvJmeterReportFileOpt = Option.builder(K_CVS_JM_REPORT_OPT).argName(K_CVS_JM_REPORT_OPT)
                 .hasArg(true)
                 .required(true)
-                .desc("JMeter report csv file (E.g : summary.csv)")
+                .desc("JMeter report csv file (E.g : summary.csv or aggregate.csv or synthesis.csv)")
                 .build();
         options.addOption(csvJmeterReportFileOpt);
 
@@ -404,7 +408,7 @@ public class JUnitReportFromJMReportCsv {
         Option exitReturnOnFailOpt = Option.builder(K_EXIT_RETURN_ON_FAIL_OPT).argName(K_EXIT_RETURN_ON_FAIL_OPT)
                 .hasArg(true)
                 .required(false)
-                .desc("if true then when kpi fail then create JUnit XML file and program return exit 1 (KO); if false [Default] then create JUnit XML File and exit 0 (OK)")
+                .desc("if true then when kpi fail then create JUnit XML file and program return exit 1 (KO); if false (Default) then create JUnit XML File and exit 0 (OK)")
                 .build();
         options.addOption(exitReturnOnFailOpt);
 

@@ -53,10 +53,10 @@ The tool have parameters :
 usage: io.github.vdaburon.jmeter.utils.reportkpi.JUnitReportFromJMReportCsv -csvJMReport &lt;csvJMReport&gt; [-csvLabelColumnName &lt;csvLabelColumnName&gt;]
        [-exitReturnOnFail &lt;exitReturnOnFail&gt;] [-help] [-junitFile &lt;junitFile&gt;] -kpiFile &lt;kpiFile&gt;
 io.github.vdaburon.jmeter.utils.reportkpi.JUnitReportFromJMReportCsv
- -csvJMReport &lt;csvJMReport&gt;                 JMeter report csv file (E.g : summary.csv)
+ -csvJMReport &lt;csvJMReport&gt;                 JMeter report csv file (E.g : summary.csv or aggregate.csv or synthesis.csv)
  -csvLabelColumnName &lt;csvLabelColumnName&gt;   Label Column Name in CSV JMeter Report (Default : Label)
  -exitReturnOnFail &lt;exitReturnOnFail&gt;       if true then when kpi fail then create JUnit XML file and program return exit 1 (KO); if false
-                                            [Default] then create JUnit XML File and exit 0 (OK)
+                                            (Default) then create JUnit XML File and exit 0 (OK)
  -help                                      Help and show parameters
  -junitFile &lt;junitFile&gt;                     junit file name out (Default : jmeter-junit-plugin-jmreport.xml)
  -kpiFile &lt;kpiFile&gt;                         KPI file contains rule to check (E.g : kpi.csv)
@@ -104,7 +104,7 @@ The maven groupId, artifactId and version, this plugin is in the **Maven Central
 ```xml
 <groupId>io.github.vdaburon</groupId>
 <artifactId>junit-reporter-kpi-from-jmeter-report-csv</artifactId>
-<version>1.2</version>
+<version>1.3</version>
 ```
 Just include the plugin in your `pom.xml` and execute `mvn verify` <br>
 or individual launch `mvn -DjmeterReportFile=synthesis.csv -DkpiFile=kpi.csv -DjunitFile=jmeter-junit-plugin-jmreport.xml exec:java@create_junit-report-kpi-from-jmeter-report`
@@ -122,7 +122,7 @@ or individual launch `mvn -DjmeterReportFile=synthesis.csv -DkpiFile=kpi.csv -Dj
     <dependency>
       <groupId>io.github.vdaburon</groupId>
       <artifactId>junit-reporter-kpi-from-jmeter-report-csv</artifactId>
-      <version>1.2</version>
+      <version>1.3</version>
     </dependency>
   </dependencies>
 
@@ -170,6 +170,8 @@ java -jar junit-reporter-kpi-from-jmeter-report-csv-&lt;version&gt;-jar-with-dep
 Usually this plugin is use with [jmeter-graph-tool-maven-plugin](https://github.com/vdaburon/jmeter-graph-tool-maven-plugin)
 
 ## Versions
+Version 1.3 change Fail Message when Equality
+
 Version 1.2 change package name (add reportkpi)
 
 Version 1.1 change groupId
