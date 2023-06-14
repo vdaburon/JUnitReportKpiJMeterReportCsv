@@ -15,11 +15,14 @@ import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 import java.io.File;
 
+import java.util.logging.Logger;
+
 /**
  * Utility Class to create a JUnit DOM, add testcase and write JUnit XML file
  */
 
 public class UtilsJUnitXml {
+    private static final Logger LOGGER = Logger.getLogger(UtilsJUnitXml.class.getName());
     /**
      * Create the DOM for a JUnit XML file
      * @return the DOM with testsuite root element
@@ -149,7 +152,7 @@ public class UtilsJUnitXml {
      * @param junitXmlFileOut XML file to write
      * @throws TransformerException error when write XML file
      */
-    public static void saveXmlInFile(Document document, String junitXmlFileOut) throws TransformerException {
+    public static void saveXmFile(Document document, String junitXmlFileOut) throws TransformerException {
         // create the xml file
         //transform the DOM Object to an XML File
         TransformerFactory transformerFactory = TransformerFactory.newInstance();
@@ -160,4 +163,5 @@ public class UtilsJUnitXml {
         StreamResult streamResult = new StreamResult(new File(junitXmlFileOut));
         transformer.transform(domSource, streamResult);
     }
+
 }

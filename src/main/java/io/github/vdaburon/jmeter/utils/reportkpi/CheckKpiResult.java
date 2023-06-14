@@ -53,6 +53,10 @@ public class CheckKpiResult {
         return isKpiFail;
     }
 
+    public boolean getKpiFail() {
+        return isKpiFail;
+    }
+
     public void setKpiFail(boolean kpiFail) {
         isKpiFail = kpiFail;
     }
