@@ -124,7 +124,7 @@ The maven groupId, artifactId and version, this plugin is in the **Maven Central
 ```xml
 <groupId>io.github.vdaburon</groupId>
 <artifactId>junit-reporter-kpi-from-jmeter-report-csv</artifactId>
-<version>1.4</version>
+<version>1.5</version>
 ```
 Just include the plugin in your `pom.xml` and execute `mvn verify` <br>
 or individual launch `mvn -DjmeterReportFile=synthesis.csv -DkpiFile=kpi.csv -DjunitFile=jmeter-junit-plugin-jmreport.xml exec:java@create_junit-report-kpi-from-jmeter-report`
@@ -142,7 +142,7 @@ or individual launch `mvn -DjmeterReportFile=synthesis.csv -DkpiFile=kpi.csv -Dj
     <dependency>
       <groupId>io.github.vdaburon</groupId>
       <artifactId>junit-reporter-kpi-from-jmeter-report-csv</artifactId>
-      <version>1.4</version>
+      <version>1.5</version>
     </dependency>
   </dependencies>
 
@@ -186,10 +186,26 @@ This tool is a java jar, so it's could be use as simple jar (look at [Release](h
 java -jar junit-reporter-kpi-from-jmeter-report-csv-&lt;version&gt;-jar-with-dependencies.jar -csvJMReport summary.csv -kpiFile kpi.csv -junitFile junit-report.xml -exitReturnOnFail true
 </pre>
 
+## Tool installed with jmeter-plugins-manager
+This tool could be installed with the jmeter-plugins-manager from jmeter.plugins.org.<br>
+The tool name is : "vdn@github - junit-reporter-kpi-from-jmeter-report-csv tool"
+
+in JMETER_HOME\bin (Windows)
+<pre>
+junit-reporter-kpi-from-jmeter-report-csv.cmd -csvJMReport summary.csv -kpiFile kpi.csv -junitFile junit-report.xml -htmlOutFile result.html -csvOutFile result.csv
+</pre>
+or <br>
+in JMETER_HOME/bin (Linux or MacOS)
+<pre>
+junit-reporter-kpi-from-jmeter-report-csv.sh -csvJMReport summary.csv -kpiFile kpi.csv -junitFile junit-report.xml -htmlOutFile result.html -csvOutFile result.csv
+</pre>
+
 ## Link to other project
 Usually this plugin is use with [jmeter-graph-tool-maven-plugin](https://github.com/vdaburon/jmeter-graph-tool-maven-plugin)
 
 ## Versions
+version 1.5 add jmeter-plugins.org installer
+
 version 1.4 export result in html, json or csv format
 
 Version 1.3 change Fail Message when Equality

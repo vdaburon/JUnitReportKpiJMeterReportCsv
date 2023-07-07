@@ -6,7 +6,7 @@
 
     <groupId>io.github.vdaburon</groupId>
     <artifactId>junit-reporter-kpi-from-jmeter-report-csv</artifactId>
-    <version>1.4</version>
+    <version>1.5</version>
     <packaging>jar</packaging>
     <name>Create a JUnit XML file with KPI rules from JMeter CSV Report</name>
     <description>A tool that creates a JUnit XML file with KPI rules from JMeter CSV Report, export result in html, csv or json format</description>
@@ -173,6 +173,10 @@
                 </executions>
             </plugin>
             <plugin>
+                <!-- deploy jar in maven central or stagging only : mvn clean deploy
+                 if autoReleaseAfterClose == true then release in maven central;
+                 if autoReleaseAfterClose == false then release in stagging only not maven central
+                -->
                 <groupId>org.sonatype.plugins</groupId>
                 <artifactId>nexus-staging-maven-plugin</artifactId>
                 <version>1.6.13</version>
@@ -184,5 +188,13 @@
                 </configuration>
             </plugin>
         </plugins>
+
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <!-- add version for the generated library in the script shell .cmd and .sh -->
+                <filtering>true</filtering>
+            </resource>
+        </resources>
     </build>
 </project>
