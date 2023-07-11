@@ -64,7 +64,7 @@ public class JUnitReportFromJMReportCsv {
     public static final String K_CSV_JMREPORT_COL_LABEL_DEFAULT = "Label";
 
     // Freemarker Html Template
-    public static final String K_FREEMARKER_HTML_TEMPLATE_DIRECTORY = "/templates_freemarker";
+    public static final String K_FREEMARKER_HTML_TEMPLATE_DIRECTORY = "/templates_freemarker_reportkpi";
     public static final String K_FREEMARKER_HTML_TEMPLATE = "template_html_result.ftl";
     public static final String K_FREEMARKER_DIV_HTML_TEMPLATE = "template_div_result.ftl";
 
