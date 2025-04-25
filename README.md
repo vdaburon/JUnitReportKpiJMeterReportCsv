@@ -124,7 +124,7 @@ The maven groupId, artifactId and version, this plugin is in the **Maven Central
 ```xml
 <groupId>io.github.vdaburon</groupId>
 <artifactId>junit-reporter-kpi-from-jmeter-report-csv</artifactId>
-<version>1.6</version>
+<version>1.7</version>
 ```
 Just include the plugin in your `pom.xml` and execute `mvn verify` <br>
 or individual launch `mvn -DjmeterReportFile=synthesis.csv -DkpiFile=kpi.csv -DjunitFile=jmeter-junit-plugin-jmreport.xml exec:exec@create_junit-report-kpi-from-jmeter-report`
@@ -142,7 +142,7 @@ or individual launch `mvn -DjmeterReportFile=synthesis.csv -DkpiFile=kpi.csv -Dj
     <dependency>
       <groupId>io.github.vdaburon</groupId>
       <artifactId>junit-reporter-kpi-from-jmeter-report-csv</artifactId>
-      <version>1.6</version>
+      <version>1.7</version>
     </dependency>
   </dependencies>
 
@@ -209,7 +209,9 @@ junit-reporter-kpi-from-jmeter-report-csv.sh -csvJMReport summary.csv -kpiFile k
 Usually this plugin is use with [jmeter-graph-tool-maven-plugin](https://github.com/vdaburon/jmeter-graph-tool-maven-plugin)
 
 ## Versions
-version 1.6 change the default freemaker directory for html_templates because same directory and same files name than others tools junit-report-kpi-xxx generate errors
+version 1.7 date 2025-04-25, Define unique table css class to avoid conflict, update libraries (jackson, commons-cli, commons-csv, freemarker, nexus-staging).
+
+version 1.6 date 2032-07-11, Change the default freemaker directory for html_templates because same directory and same files name than others tools junit-report-kpi-xxx generate errors
 
 version 1.5 add jmeter-plugins.org installer
 
